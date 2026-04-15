@@ -58,7 +58,7 @@ with col2:
     st.metric("🥈 Wuliangye ROE", f"{wly_roe:.1f}%")
 
 # Draw a line chart
-st.subheader(f"📈 {metrics[selected_metric]} Trend comparison")
+st.subheader(f"📈 {metrics[selected_metric]} trend comparison")
 
 plot_df = filtered_df.copy()
 if selected_metric != "leverage":
@@ -83,8 +83,8 @@ fig_bar = px.bar(
     y=selected_metric,
     color="Company",
     barmode="group",
-    title=f"{metrics[selected_metric]} 年度对比",
-    labels={selected_metric: metrics[selected_metric], "year": "年份"}
+    title=f"{metrics[selected_metric]} annual comparison",
+    labels={selected_metric: metrics[selected_metric], "year": "year"}
 )
 st.plotly_chart(fig_bar, use_container_width=True)
 
