@@ -3,12 +3,12 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# 页面配置
-st.set_page_config(page_title="茅台 vs 五粮液 财务比率对比", layout="wide")
-st.title("🍶 贵州茅台 vs 五粮液 财务比率对比")
-st.markdown("### 基于 ROE、ROA、利润率等核心指标")
+# Page set
+st.set_page_config(page_title="Moutai vs Wuliangye Financial ratio comparison", layout="wide")
+st.title("🍶 Moutai vs Wuliangye Financial ratio comparison")
+st.markdown("### Based on core indicators such as ROE, ROA, and profit margin")
 
-# 加载数据（确保 CSV 文件在相同目录）
+# Load data
 @st.cache_data
 def load_data():
     df = pd.read_csv("financial_ratios.csv")
@@ -17,48 +17,48 @@ def load_data():
 
 df = load_data()
 
-# 定义指标的中英文名称
+# Define the name of the indicator
 metrics = {
-    "roe": "ROE (净资产收益率 %)",
-    "roa": "ROA (总资产收益率 %)",
-    "profitmargin": "净利润率 %",
-    "turnover": "总资产周转率 %",
-    "leverage": "杠杆倍数 (无%)"
+    "roe": "ROE (Return on Equity %)",
+    "roa": "ROA (Return on Assets %)",
+    "profitmargin": "profitmargin %",
+    "turnover": "turnover %",
+    "leverage": "leverage (No%)"
 }
 
-# 侧边栏：选择指标
+# Sidebar: Select Indicators
 selected_metric = st.sidebar.selectbox(
-    "选择要对比的财务指标",
+    "Select the financial indicators to compare",
     options=list(metrics.keys()),
     format_func=lambda x: metrics[x]
 )
 
-# 侧边栏：选择年份范围
+# Sidebar: Select Year Range
 years = sorted(df["year"].unique())
 year_range = st.sidebar.slider(
-    "选择年份范围",
+    "Select Year Range",
     min_value=min(years),
     max_value=max(years),
     value=(min(years), max(years))
 )
 
-# 根据选择过滤数据
+# Filter data based on selection
 filtered_df = df[(df["year"] >= year_range[0]) & (df["year"] <= year_range[1])]
 
-# 主界面：显示关键 KPI（最新一年）
+# Main interface: Display key KPIs (latest year)
 latest_year = filtered_df["year"].max()
 latest_data = filtered_df[filtered_df["year"] == latest_year]
 
 col1, col2 = st.columns(2)
 with col1:
     moutai_roe = latest_data[latest_data["Company"]=="Moutai"]["roe"].values[0] * 100
-    st.metric("🥇 茅台 ROE", f"{moutai_roe:.1f}%")
+    st.metric("🥇 Moutai ROE", f"{moutai_roe:.1f}%")
 with col2:
     wly_roe = latest_data[latest_data["Company"]=="Wuliangye"]["roe"].values[0] * 100
-    st.metric("🥈 五粮液 ROE", f"{wly_roe:.1f}%")
+    st.metric("🥈 Wuliangye ROE", f"{wly_roe:.1f}%")
 
-# 绘制折线图
-st.subheader(f"📈 {metrics[selected_metric]} 趋势对比")
+# Draw a line chart
+st.subheader(f"📈 {metrics[selected_metric]} Trend comparison")
 
 plot_df = filtered_df.copy()
 if selected_metric != "leverage":
@@ -70,13 +70,13 @@ fig_line = px.line(
     y=selected_metric,
     color="Company",
     markers=True,
-    title=f"{metrics[selected_metric]} 随时间变化",
-    labels={selected_metric: metrics[selected_metric], "year": "年份"}
+    title=f"{metrics[selected_metric]} change over time",
+    labels={selected_metric: metrics[selected_metric], "year": "year"}
 )
 st.plotly_chart(fig_line, use_container_width=True)
 
-# 柱状对比图
-st.subheader(f"📊 各年份 {metrics[selected_metric]} 对比")
+# Draw a bar chart
+st.subheader(f"📊 Each year {metrics[selected_metric]} comparision")
 fig_bar = px.bar(
     plot_df,
     x="year",
@@ -88,17 +88,17 @@ fig_bar = px.bar(
 )
 st.plotly_chart(fig_bar, use_container_width=True)
 
-# 显示原始数据表格
-with st.expander("📋 查看原始数据"):
+# Display the original data table
+with st.expander("📋 view raw data"):
     st.dataframe(filtered_df)
 
-# 分析结论
-st.subheader("💡 核心发现")
+# Analysis conclusion
+st.subheader("💡 Core Findings")
 st.markdown("""
-- **茅台 ROE 持续上升**（31.9% → 36.9%），远高于五粮液（~24%）
-- **茅台净利润率稳定在 52% 以上**，五粮液约 37%，品牌溢价显著
-- **总资产周转率**：茅台从 48.8% 提升至 57.2%，营运效率改善
-- **杠杆水平**：两家均很低（1.2-1.4倍），财务风险小
+- **Maotai's ROE continues to rise**（31.9% → 36.9%）， far higher than Wuliangye's （~24%）
+- **Maotai's net profit margin remains stable at over 52%**，while Wuliangye's is around 37%, indicating a significant brand premium
+- **Turnover**：Maotai has increased from 48.8% to 57.2%, resulting in improved operational efficiency
+- **Leverage**：Both companies have very low levels (1.2-1.4 times), with low financial risk
 """)
 
-st.caption("数据来源：CSMAR (via WRDS) | 分析期间：2022-2024")
+st.caption("Data Source：CSMAR (via WRDS) | Analysis period：2022-2024")
