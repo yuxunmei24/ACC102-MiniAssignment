@@ -20,21 +20,16 @@ This interactive tool compares the profitability, efficiency, and leverage of Kw
 - Asset turnover of Moutai rose from 48.8% to 57.2%, indicating better operational efficiency.
 - Both companies have very low leverage (1.2–1.4), implying low financial risk.
 
-## 5. How to run (optional but valuable)
-github https://github.com/yuxunmei24 /acc102-miniassignment.git
-cd acc102-miniassignment
+## 5. How to run 
+（1）Clone the respository:github https://github.com/yuxunmei24 /ACC102-Miniassignment.git
+(2)Open cd acc102-miniassignment
 pip install -r requirements.txt
 streamlit run app.py
 
 ## 6. Product link / Demo
-**Live app**: [https://acc102-miniassignment-eq3r9z5ewblnl8rq4vbzbc.streamlit.app ]
-**Demo video**: [Link to your 1-3 min demo video] (e.g., YouTube unlisted)
+Live app: http://localhost:8501
+Demo video: [Link to your 1-3 min demo video] (e.g., YouTube unlisted)
 
 ## 7. Limitations & next steps
-(1) Limitations**: Only three years of data (2022–2024); qualitative factors (brand strategy, management) not included.
-(2) Next steps: Extend time horizon to 5+ years; add DuPont analysis and cash flow metrics.
-
-## 8. AI Disclosure
-- Xipu AI(April 2026):Explaining the basic concepts of the asignment  
-- DeepSeek(April 2026): Introductions of Streamlit structuring, polishing README writing and error fixing.  
-My own contributions include data acquisition from WRDS, ratio selection, analysis design, and final validation.
+(1) Limitations: Only three years of data (2022–2024); qualitative factors (brand strategy, management) not included.
+(2) Next steps: Extend time horizon to 5 years; add DuPont analysis and cash flow metrics.
