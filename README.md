@@ -15,17 +15,19 @@ This interactive tool compares the profitability, efficiency, and leverage of Kw
 (5) Added sidebar filters for metric selection and year range.
 
 ## 4. Key Findings 
-- Moutai’s ROE improved from 31.9% (2022) to 36.9% (2024), far above Wuliangye’s ~24%.
-- Moutai’s net profit margin remained stable at ~52%, while Wuliangye stayed at ~37%.
+- Moutai’s ROE improved from 31.9% (2022) to 36.9% (2024), far above Wuliangye’s 24%.
+- Moutai’s net profit margin remained stable at 52%, while Wuliangye stayed at 37%.
 - Asset turnover of Moutai rose from 48.8% to 57.2%, indicating better operational efficiency.
 - Both companies have very low leverage (1.2–1.4), implying low financial risk.
 
 ## 5. How to run 
-（1）Clone the respository:github https://github.com/yuxunmei24 /ACC102-Miniassignment.git
-(2)Open cd acc102-miniassignment
-pip install -r requirements.txt
+(1) Clone the respository:https://github.com/yuxunmei24/ACC102-MiniAssignment
+(2) Download these files: app.py,requirements.txt,financial_ratios.csv on Desktop,then create a new file folder named acc102 on your desktop,and put these files into the folder.
+(3) Open the terminal and input these codes below:
+pip install streamlit
+cd Desktop/acc102
 streamlit run app.py
-
+(4) Finally it will turn to the Streamlit page where we can show the app product.
 ## 6. Product link / Demo
 Live app: http://localhost:8501
 Demo video: [Link to your 1-3 min demo video] (e.g., YouTube unlisted)
