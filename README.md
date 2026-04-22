@@ -27,11 +27,10 @@ This interactive tool compares the profitability, efficiency, and leverage of Kw
 pip install streamlit
 cd Desktop/acc102
 streamlit run app.py
-(4) Finally it will turn to the Streamlit page where we can show the app product.
+(4) Press enter,finally it will turn to the Streamlit page where we can show the app product.
 ## 6. Product link / Demo
 Live app: http://localhost:8501
-Demo video: [Link to your 1-3 min demo video] (e.g., YouTube unlisted)
-
+Demo video: 【ACC102 Track 4 Mini Assignment-哔哩哔哩】 https://b23.tv/udRjKec
 ## 7. Limitations & next steps
 (1) Limitations: Only three years of data (2022–2024); qualitative factors (brand strategy, management) not included.
 (2) Next steps: Extend time horizon to 5 years; add DuPont analysis and cash flow metrics.
